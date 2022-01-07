@@ -17,7 +17,7 @@
 	//var launchDate = "";
 	var price ="";
 	var volume = "";
-	//var holders = "";
+	var holders = "";
 	var receivers = "";
 	var totalSupply = "";
 	var marketCap = "";
@@ -70,8 +70,8 @@
 		  tokenPrice = tokenData["price"];
 		  document.getElementById('price').innerHTML = "Price: $" + tokenPrice;
 			
-		  //holders = tokenData["holders"];
-		  //document.getElementById('holders').innerHTML = "Holders: " + largeFormat(holders);
+		  holders = tokenData["holders"];
+		  document.getElementById('holders').innerHTML = "Holders: " + largeFormat(holders);
 			
 		  receivers = tokenData["receivers"];
 		  document.getElementById('receivers').innerHTML = "Receivers: " + largeFormat(receivers);
