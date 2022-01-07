@@ -1,11 +1,12 @@
 <html>
 <head>
-<title>GUNTHY (GUNTHY) Token Stats Client</title>
+<title>GUNTHY Token Stats Client</title>
+<meta http-equiv="Pragma" content="no-cache">
 <base target="_blank">
 <script src="https://d3js.org/d3.v7.min.js"></script>
 <script>
 	let xhr = new XMLHttpRequest();
-	xhr.open('GET', "https://gunthy-token.computeronix.workers.dev/");
+	xhr.open('GET', "https://gunthy.trade/api");
 	xhr.send();
 
 	var respond;
@@ -13,35 +14,32 @@
 	var tokenSymbol = "";
 	var tokenContract = "";
 	var totalBurned = "";
-	var launchDate = "";
+	//var launchDate = "";
 	var price ="";
 	var volume = "";
-	var holders = "";
-	var receivers = "";
+	//var holders = "";
+	//var receivers = "";
 	var totalSupply = "";
 	var marketCap = "";
-	var followers = "";
 	var maximumSupply = "";
 	var circulatingSupply = "";
-	var totalLiquidity = "";
-	var liquidityRatio = "";
-	var totalTransactions = "";
-	var medianTransfer = "";
-	var averageTransfer = "";
-	var totalTransfer = "";
-	var daysActive = "";
-	var senders = "";
-	var firstDayActive = "";
-	var lastDayActive = "";
+	//var totalTransactions = "";
+	//var medianTransfer = "";
+	//var averageTransfer = "";
+	//var totalTransfer = "";
+	//var daysActive = "";
+	//var senders = "";
+	//var firstDayActive = "";
+	//var lastDayActive = "";
 	var divisor = "";
-	var shortDesc = "";
+	//var shortDesc = "";
 	var longDesc = "";
 	var lastUpdated = "";
-	var logoList = "";
-	var keyWalletListList = "";
+	//var keyWalletListList = "";
+	var marketList = "";
 	var burnAddress = "";
 	var explorerLink = "";
-	var launchPrice = "";
+	//var launchPrice = "";
 	
 	largeFormat = d3.format(",.0f");
 	largeFormatDecimal = d3.format(",.2f");
@@ -63,8 +61,8 @@
 		  explorerLink = tokenData["explorer_link"];
 		  document.getElementById('contract').innerHTML = "Token Contract: <a href=\"" + explorerLink + "\">" + tokenContract + "</a>";
 			
-		  launchDate = tokenData["launch_date"];
-		  document.getElementById('launchDate').innerHTML = "Launch Date: " + launchDate;
+		  //launchDate = tokenData["launch_date"];
+		  //document.getElementById('launchDate').innerHTML = "Launch Date: " + launchDate;
 			
 		  totalBurned = tokenData["burned"];
 		  document.getElementById('burned').innerHTML = "Total Burned: " + largeFormat(totalBurned);
@@ -72,11 +70,11 @@
 		  tokenPrice = tokenData["price"];
 		  document.getElementById('price').innerHTML = "Price: $" + tokenPrice;
 			
-		  holders = tokenData["holders"];
-		  document.getElementById('holders').innerHTML = "Holders: " + largeFormat(holders);
+		  //holders = tokenData["holders"];
+		  //document.getElementById('holders').innerHTML = "Holders: " + largeFormat(holders);
 			
-		  receivers = tokenData["receivers"];
-		  document.getElementById('receivers').innerHTML = "Receivers: " + largeFormat(receivers);
+		  //receivers = tokenData["receivers"];
+		  //document.getElementById('receivers').innerHTML = "Receivers: " + largeFormat(receivers);
 		  
 		  marketCap = tokenData["market_cap"];
 		  document.getElementById('marketCap').innerHTML = "Market Cap: $" + largeFormatDecimal(marketCap);
@@ -86,88 +84,82 @@
 			
 		  totalSupply = tokenData["total_supply"];
 		  document.getElementById('totalSupply').innerHTML = "Total Supply: " + largeFormat(totalSupply);
-			
-		  followers = tokenData["social_score"];
-		  document.getElementById('followers').innerHTML = "Followers: " + largeFormat(followers);
-			
+						
 		  maximumSupply = tokenData["maximum_supply"];
 		  document.getElementById('maximumSupply').innerHTML = "Maximum Supply: " + largeFormat(maximumSupply);
 			
 		  circulatingSupply = tokenData["circulating_supply"];
 		  document.getElementById('circulatingSupply').innerHTML = "Circulating Supply: " + largeFormat(circulatingSupply);
+						
+		  //totalTransactions = tokenData["total_transactions"];
+		  //document.getElementById('totalTransactions').innerHTML = "Total Transactions: " + largeFormat(totalTransactions);
 			
-		  totalLiquidity = tokenData["total_liquidity"];
-		  document.getElementById('totalLiquidity').innerHTML = "Total Liquidity: $" + largeFormatDecimal(totalLiquidity);
+		  //medianTransfer = tokenData["median_transfer"];
+		  //document.getElementById('medianTransfer').innerHTML = "Median Transferred Amount: $" + largeFormatDecimal(medianTransfer);
+			
+		  //averageTransfer = tokenData["average_transfer"];
+		  //document.getElementById('averageTransfer').innerHTML = "Average Transferred Amount: $" + largeFormatDecimal(averageTransfer);
+			
+		  //totalTransfer = tokenData["total_transfer"];
+		  //document.getElementById('totalTransfer').innerHTML = "Total Transferred Amount: $" + largeFormatDecimal(totalTransfer);
+			
+		  //daysActive = tokenData["days_active"];
+		  //document.getElementById('daysActive').innerHTML = "Days Active Trading: " + largeFormat(daysActive);
+			
+		  //senders = tokenData["senders"];
+		  //document.getElementById('senders').innerHTML = "Total Senders: " + largeFormat(senders);
 
-		  liquidityRatio = tokenData["liquidity_ratio"];
-		  document.getElementById('liquidityRatio').innerHTML = "Liquidity Ratio: " + largeFormatPercentage(liquidityRatio) + "%";
+		  //launchPrice = tokenData["launch_price"];
+		  //document.getElementById('launchPrice').innerHTML = "Launch Price: $" + largeFormatDecimal(launchPrice);
 			
-		  totalTransactions = tokenData["total_transactions"];
-		  document.getElementById('totalTransactions').innerHTML = "Total Transactions: " + largeFormat(totalTransactions);
+		  //firstDayActive = tokenData["first_day_active"];
+		  //document.getElementById('firstDayActive').innerHTML = "First Day Traded: " + firstDayActive;
 			
-		  medianTransfer = tokenData["median_transfer"];
-		  document.getElementById('medianTransfer').innerHTML = "Median Transferred Amount: $" + largeFormatDecimal(medianTransfer);
-			
-		  averageTransfer = tokenData["average_transfer"];
-		  document.getElementById('averageTransfer').innerHTML = "Average Transferred Amount: $" + largeFormatDecimal(averageTransfer);
-			
-		  totalTransfer = tokenData["total_transfer"];
-		  document.getElementById('totalTransfer').innerHTML = "Total Transferred Amount: $" + largeFormatDecimal(totalTransfer);
-			
-		  daysActive = tokenData["days_active"];
-		  document.getElementById('daysActive').innerHTML = "Days Active Trading: " + largeFormat(daysActive);
-			
-		  senders = tokenData["senders"];
-		  document.getElementById('senders').innerHTML = "Total Senders: " + largeFormatDecimal(senders);
-
-		  launchPrice = tokenData["launch_price"];
-		  document.getElementById('launchPrice').innerHTML = "Launch Price: $" + largeFormatDecimal(launchPrice);
-			
-		  firstDayActive = tokenData["first_day_active"];
-		  document.getElementById('firstDayActive').innerHTML = "First Day Traded: " + firstDayActive;
-			
-		  lastDayActive = tokenData["last_day_active"];
-		  document.getElementById('lastDayActive').innerHTML = "Most Recent Day Traded: " + lastDayActive;
+		  //lastDayActive = tokenData["last_day_active"];
+		  //document.getElementById('lastDayActive').innerHTML = "Most Recent Day Traded: " + lastDayActive;
 			
 		  divisor = tokenData["divisor"];
 		  document.getElementById('divisor').innerHTML = "Divisor: " + divisor;
 			
-		  shortDesc = tokenData["short_description"];
-		  document.getElementById('shortDesc').innerHTML = "Short Description:<br>" + shortDesc;
+		  //shortDesc = tokenData["short_description"];
+		  //document.getElementById('shortDesc').innerHTML = "Short Description:<br>" + shortDesc;
 			
 		  longDesc = tokenData["long_description"];
 		  document.getElementById('longDesc').innerHTML = "Long Description:<br>" + longDesc.replace(/\n/g, "<br>");
+					
+		  //keyWalletListList = tokenData["key_wallet_list"];
+		  //document.getElementById('keyWalletList').innerHTML = "Key Wallet List:<br><br>";
+
+		  //for (let i = 0; i < keyWalletListList.length; i++) {
+		  //	walletAddress = keyWalletListList[i]["address"];
+		  //	walletTag = keyWalletListList[i]["tag"];
+		//	walletOwner = keyWalletListList[i]["owner"];
+		//	walletStatus = keyWalletListList[i]["status"];
+		//	excludeCirculatingSupply = keyWalletListList[i]["exclude_circulating_supply"];
+		//	walletBalance = keyWalletListList[i]["balance"];
+		//	percentageNetwork = keyWalletListList[i]["percentage"];
+		//	walletLink = keyWalletListList[i]["explorer_link"];
+		//				  
+		  //	document.getElementById('keyWalletList').innerHTML += "Wallet Address: <a href=\"" + walletLink + "\">" + walletAddress + "</a><br>";
+		//	document.getElementById('keyWalletList').innerHTML += "Wallet Tag: " + walletTag + "<br>";
+		//	document.getElementById('keyWalletList').innerHTML += "Wallet Owner: " + walletOwner + "<br>";
+		//	document.getElementById('keyWalletList').innerHTML += "Wallet Status: " + walletStatus + "<br>";
+		//	document.getElementById('keyWalletList').innerHTML += "Exclude From Circulating Supply: " + excludeCirculatingSupply + "<br>";
+		//	document.getElementById('keyWalletList').innerHTML += "Wallet Balance (DPS): " + largeFormatDecimal(walletBalance) + "<br>";
+		//	document.getElementById('keyWalletList').innerHTML += "Percentage: " + largeFormatPercentage(percentageNetwork) + "%<br><br>";
+		  //}
 			
-		  logoList = tokenData["logo_list"];
-		  document.getElementById('logoList').innerHTML = "Logo List:<br>";
+		  marketsList = tokenData["markets_list"];
+		  document.getElementById('marketsList').innerHTML = "Markets List:<br><br>";
 
-		  for (let i = 0; i < logoList.length; i++) {
-		  	logoSize = logoList[i]["logo_size"];
-		  	logoUrl = logoList[i]["logo_url"];
-			  
-		  	document.getElementById('logoList').innerHTML += "(" + logoSize + ") <a href=\"" + logoUrl + "\"><img src=\"" + logoUrl + "\" alt=\"" + tokenName + " - " + logoSize + " size logo\" />" + logoUrl + "</a><br>";
-		  }
-		
-		  keyWalletListList = tokenData["key_wallet_list"];
-		  document.getElementById('keyWalletList').innerHTML = "Key Wallet List:<br><br>";
-
-		  for (let i = 0; i < keyWalletListList.length; i++) {
-		  	walletAddress = keyWalletListList[i]["address"];
-		  	walletTag = keyWalletListList[i]["tag"];
-			walletOwner = keyWalletListList[i]["owner"];
-			walletStatus = keyWalletListList[i]["status"];
-			excludeCirculatingSupply = keyWalletListList[i]["exclude_circulating_supply"];
-			walletBalance = keyWalletListList[i]["balance"];
-			percentageNetwork = keyWalletListList[i]["percentage"];
-			walletLink = keyWalletListList[i]["explorer_link"];
+		  for (let i = 0; i < marketsList.length; i++) {
+		  	marketName = marketsList[i]["market_name"];
+		  	marketTarget = marketsList[i]["market_target"];
+			marketPrice = marketsList[i]["market_price"];
 						  
-		  	document.getElementById('keyWalletList').innerHTML += "Wallet Address: <a href=\"" + walletLink + "\">" + walletAddress + "</a><br>";
-			document.getElementById('keyWalletList').innerHTML += "Wallet Tag: " + walletTag + "<br>";
-			document.getElementById('keyWalletList').innerHTML += "Wallet Owner: " + walletOwner + "<br>";
-			document.getElementById('keyWalletList').innerHTML += "Wallet Status: " + walletStatus + "<br>";
-			document.getElementById('keyWalletList').innerHTML += "Exclude From Circulating Supply: " + excludeCirculatingSupply + "<br>";
-			document.getElementById('keyWalletList').innerHTML += "Wallet Balance (DPS): " + largeFormatDecimal(walletBalance) + "<br>";
-			document.getElementById('keyWalletList').innerHTML += "Percentage: " + largeFormatPercentage(percentageNetwork) + "%<br><br>";
+		  	document.getElementById('marketsList').innerHTML += "Market Name: " + marketName + "<br>";
+			document.getElementById('marketsList').innerHTML += "Market Target: " + marketTarget + "<br>";
+			document.getElementById('marketsList').innerHTML += "Market Price: $" + marketPrice + "<br><br>";
 		  }
 			
 		  burnAddress = tokenData["burn_address"];
@@ -181,14 +173,23 @@
 </script>
 </head>
 <body>
-<h1>GUNTHY (GUNTHY) Token Client Stats</h1>
+<h1>GUNTHY Token Client Stats</h1>
+<h2>About GUNTHY</h2>
+<p><b>The license system for our products is powered by our own ERC-20 utility token called Gunthy</b><br/>
+Gunthy token provides a monetary value to licenses, makes it easy and secure for users to self-manage API keys, and allows for frictionless license upgrades.
+</p>
+	
 <p><i>Tip: Check the console log for the full JSON response from the token stat server</i></p>
-<p>Pro Tip: Command Supported: <a href="https://gunthy-token.computeronix.workers.dev/totalsupply">https://gunthy-token.computeronix.workers.dev/totalsupply</a></p>
-<p>Pro Tip: Command Supported: <a href="https://gunthy-token.computeronix.workers.dev/circulatingsupply">https://gunthy-token.computeronix.workers.dev/circulatingsupply</a></p>
-<p>Pro Tip: Command Supported: <a href="https://gunthy-token.computeronix.workers.dev/holders">https://gunthy-token.computeronix.workers.dev/holders</a></p>
-<p>Pro Tip: GUNTHY (GUNTHY) Token API Endpoint: <a href="https://gunthy-token.computeronix.workers.dev/">https://gunthy-token.computeronix.workers.dev/</a></p>
-<p>Pro Tip: GUNTHY (GUNTHY) Price API Endpoint: <a href="https://gunthy-token.computeronix.workers.dev/price">https://gunthy-token.computeronix.workers.dev/price</a></p>
-<p>Pro Tip: OPEN SOURCE on GitHub: <a href="https://github.com/computeronix/gunthy-token-api">https://github.com/computeronix/gunthy-token-api</a></p>
+<p>Pro Tip: Command Supported: <a href="https://gunthy.trade/api/totalsupply">https://gunthy.trade/api/totalsupply</a></p>
+<p>Pro Tip: Command Supported: <a href="https://gunthy.trade/api/circulatingsupply">https://gunthy.trade/api/circulatingsupply</a></p>
+<p>Pro Tip: Command Supported: <a href="https://gunthy.trade/api/maximumsupply">https://gunthy.trade/api/maximumsupply</a></p>
+<p>Pro Tip: Command Supported: <a href="https://gunthy.trade/api/holders">https://gunthy.trade/api/holders</a></p>
+<p>Pro Tip: Command Supported: <a href="https://gunthy.trade/api/volume">https://gunthy.trade/api/volume</a></p>
+<p>Pro Tip: Command Supported: <a href="https://gunthy.trade/api/price">https://gunthy.trade/api/price</a></p>
+<p>Pro Tip: Command Supported: <a href="https://gunthy.trade/api/summary">https://gunthy.trade/api/summary</a></p>
+<p>Pro Tip: DEEPSPACE (DPS) Token API Endpoint: <a href="https://token.deepspace.game/api">https://gunthy.trade/api</a></p>
+<p>Pro Tip: DEEPSPACE (DPS) Price API Endpoint: <a href="https://token.deepspace.game/price">https://gunthy.trade/price</a></p>
+<br/>
 <br><div id="name">Token Name: N/A</div>
 <br><div id="symbol">Token Symbol: N/A</div>
 <br><div id="contract">Token Contract: N/A</div>
@@ -199,28 +200,24 @@
 <br><div id="holders">Holders: N/A</div>
 <br><div id="marketCap">Market Cap: N/A</div>
 <br><div id="totalSupply">Total Supply: N/A</div>
-<br><div id="followers">Followers: N/A</div>
 <br><div id="maximumSupply">Maximum Supply: N/A</div>
 <br><div id="circulatingSupply">Circulating Supply: N/A</div>
-<br><div id="totalLiquidity">Total Liqudity: N/A</div>
-<br><div id="liquidityRatio">Liquidity Ratio: N/A</div>
-<br><div id="totalTransactions">Total Transactions: N/A</div>
-<br><div id="medianTransfer">Total Median Transferred: N/A</div>
-<br><div id="averageTransfer">Total Average Transferred: N/A</div>
-<br><div id="totalTransfer">Total Transferred: N/A</div>
-<br><div id="daysActive">Days Actives: N/A</div>
-<br><div id="senders">Total Senders: N/A</div>
-<br><div id="receivers">Receivers: N/A</div>
-<br><div id="firstDayActive">First Day Traded: N/A</div>
-<br><div id="lastDayActive">Most Recent Day Traded: N/A</div>
-<br><div id="launchDate">Launch Date: N/A</div>
-<br><div id="launchPrice">Launch Price: N/A</div>
+<-- <br><div id="totalTransactions">Total Transactions: N/A</div> -->
+<-- <br><div id="medianTransfer">Total Median Transferred: N/A</div> -->
+<-- <br><div id="averageTransfer">Total Average Transferred: N/A</div> -->
+<-- <br><div id="totalTransfer">Total Transferred: N/A</div> -->
+<-- <br><div id="daysActive">Days Actives: N/A</div> -->
+<-- <br><div id="senders">Total Senders: N/A</div> -->
+<-- <br><div id="receivers">Receivers: N/A</div> -->
+<-- <br><div id="firstDayActive">First Day Traded: N/A</div> -->
+<-- <br><div id="lastDayActive">Most Recent Day Traded: N/A</div> -->
+<-- <br><div id="launchDate">Launch Date: N/A</div> -->
+<-- <br><div id="launchPrice">Launch Price: N/A</div> -->
+<br><div id="marketsList">Markets List - N/A</div>
 <br><div id="shortDesc">Short Description: N/A</div>
 <br><div id="longDesc">Long Description: N/A</div>
 <br>
-<br><div id="logoList">Logo List - N/A</div>
-<br>
-<br><div id="keyWalletList">Key Wallet List - N/A</div>
+<-- <br><div id="keyWalletList">Key Wallet List - N/A</div> -->
 <div id="burnAddress">Burn Address: N/A</div>
 <br><div id="lastUpdated">Last Updated: N/A</div>
 </body>
